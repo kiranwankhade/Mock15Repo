@@ -11,14 +11,9 @@ postRouters.get("/",async (req,res)=>{
     res.send({"Post":retrieve})
 });
 
-postRouters.get("/sort=asc",async(req,res)=>{
-    let post = await PostModel.find().sort({budget:1})
-    res.send(post)
-})
-
-
-postRouters.get("/sort=desc",async(req,res)=>{
-    let post = await PostModel.find().sort({budget:-1})
+postRouters.get("/sort",async(req,res)=>{
+    console.log('req.query:', req.query.budget)
+    let post = await PostModel.find().sort({budget:req.query.budget})
     res.send(post)
 })
 
